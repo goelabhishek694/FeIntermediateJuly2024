@@ -98,3 +98,61 @@ let candidate1 = new Class1('Muthu', 20);
 let candidate2 = new Class1('Annamalai', 25)
 console.log(candidate1.name); // Output : Muthu
 console.log(candidate2.name); // Output : Annamalai
+
+//in js, prototypal inheritance is used to add methods and prop to objects 
+// it allows one object to inherit prop and methods to another 
+// Object.getPrototypeOf and Object.setPrototypeOf -> HW 
+//proto is used to set
+
+let candidate3={
+    fly:true,
+    canTalk(){
+        return "sorry cant talk"
+    }
+}
+
+let user3={
+    canCook:true,
+    canCode(){
+        return "cant code"
+    },
+    __proto__ : candidate3,
+}
+
+console.log("can a user fly : "+user3.fly);
+console.log(user3);
+
+
+// prevent Extensions -> new prop cannot be added/created
+let config={
+    appName:"scaler.com",
+    database:{
+        host:"127.0.0.1",
+        name:"mainDB",
+        user:"admin",
+        pswd:"root"
+    }
+} 
+
+// let nonExtendableObject=Object.preventExtensions(config);
+// config.tempServer="interviewbit.com";
+// config.database.tempName="tempDB"; // will not work for nested non primitives 
+// console.log(nonExtendableObject);
+
+// Seal 
+// cannot create delete 
+// let nonExtendableObject=Object.seal(config);
+// config.tempServer="interviewbit.com";
+// delete config.appName;
+// config.database.tempName="tempDB"; // will not work for nested non primitives 
+// console.log(nonExtendableObject);
+
+// Freeze 
+// cannot create update delete
+// let nonExtendableObject=Object.freeze(config);
+// config.tempServer="interviewbit.com";
+// config.appName="google.com";
+// delete config.appName;
+// config.database.tempName="tempDB"; // will not work for nested non primitives 
+// console.log(nonExtendableObject);
+
