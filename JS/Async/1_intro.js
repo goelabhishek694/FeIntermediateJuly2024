@@ -81,29 +81,29 @@
 // console.log("After");
 
 //asynchronous code to read 2 files -> parallel executuion
-// console.log("Before");
-// fs.readFile("./f1.txt", function (err, data1) {
-//   if (err) console.log(err);
-//   else console.log(data1 + "");
-// });
-// fs.readFile("./f2.txt", function (err, data2) {
-//   if (err) console.log(err);
-//   else console.log(data2 + "");
-// });
-// console.log("After");
+console.log("Before");
+fs.readFile("./f1.txt", function (err, data1) {
+  if (err) console.log(err);
+  else console.log(data1 + "");
+});
+fs.readFile("./f2.txt", function (err, data2) {
+  if (err) console.log(err);
+  else console.log(data2 + "");
+});
+console.log("After");
 
 //asynchronous code with serial execution
-// console.log("Before");
-// fs.readFile("./f1.txt", f1cb);
+console.log("Before");
+fs.readFile("./f1.txt", f1cb);
 
-// function f1cb(err, data) {
-//   console.log(data + "");
-//   fs.readFile("./f2.txt", function (err, data2) {
-//     if (err) console.log(err);
-//     else console.log(data2 + "");
-//   });
-// }
-// console.log("After");
+function f1cb(err, data) {
+  console.log(data + "");
+  fs.readFile("./f2.txt", function (err, data2) {
+    if (err) console.log(err);
+    else console.log(data2 + "");
+  });
+}
+console.log("After");
 
 const sum = (a, b, c, d) => {
   return a + b + c + d;
