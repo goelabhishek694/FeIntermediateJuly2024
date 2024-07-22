@@ -264,21 +264,162 @@
 // run algo funcciotn cb-> promise 
 
 
-const {runAlgo} =require("./lib");
+// const {runAlgo} =require("./lib");
 
-console.log("Before");
-let amount=100;
-let priceOfTv=20;
-//after adding to cart
-let p=runAlgo()
-p.then((data)=>{
-    console.log(data);
-    function cb(){
-        amount=amount - priceOfTv;
-        console.log("Amount",amount);
-    }
-    cb()
-}).catch(err=>console.log(err))
+// console.log("Before");
+// let amount=100;
+// let priceOfTv=20;
+// //after adding to cart
+// let p=runAlgo()
+// p.then((data)=>{
+//     console.log(data);
+//     function cb(){
+//         amount=amount - priceOfTv;
+//         console.log("Amount",amount);
+//     }
+//     cb()
+// }).catch(err=>console.log(err))
 
 
-console.log("After");
+// console.log("After");
+
+
+
+// O/P based IQ 
+
+// let fs = require("fs");
+// let promise = fs.promises.readFile("f1.txt");
+
+// promise.then(function(data) {
+//     console.log("Hi, the data is:", data);
+// });
+
+// promise.then(function(data) {
+//     console.log("Buffer format is:", data);
+// });
+
+// promise.then(function() {
+//     console.log("I am not accepting");
+// });
+
+
+// let fs = require("fs");
+// let promise = fs.promises.readFile("f11.txt");
+
+// promise.catch(function(err) {
+//     console.log("err is 1:", err);
+// });
+
+// promise.catch(function(err) {
+//     console.log("err is 2:", err);
+// });
+
+// promise.catch(function(err) {
+//     console.log("I am not accepting");
+// });
+
+//finally method is used to attach cb to execute them , regardless of wether the promises is resolved or rejeted. it is commonly used to perform cleanup and finalization of actions. 
+// finally cb will be executed in order they are defined. order will not chnage regardless of wether the promise is resolved or rejcted. 
+//finally does not acept arg in it's cb function 
+
+// let fs = require("fs");
+// let promise = fs.promises.readFile("f1.txt");
+
+// promise.finally(function(data) {
+//     // console.log("err is 1", err);
+//     console.log("data",data);
+// });
+
+// promise.finally(function(err) {
+//     console.log("err is 2", err);
+// });
+
+// promise.finally(function() {
+//     console.log("I am not accepting");
+//     console.log("Second line of finally");
+// });
+
+// Promise. resolve means the promise is going to be reoslved with value 100 (here).
+
+// Promise.resolve(100)
+//     .catch((err) => {
+//         console.log("err", err);
+//     })
+//     .then((data) => {
+//         console.log("data", data);
+//     });
+
+//way to create rejected promises
+
+// const rejectedPromise1=Promise.reject("explicit rejection");
+// rejectedPromise1.catch((err)=>console.log(err));
+
+// Promise.resolve("initial value")
+// .then(data=>{
+//     console.log(data);
+//     throw new Error("Error from then");
+// })
+// .catch(err=>console.log(err));
+
+// Promise.resolve("Initial data")
+//     .then((data) => {
+//         console.log("1st then:", data);
+//         return Promise.reject("Rejected from first then");
+//     })
+//     .catch((err) => {
+//         console.log("1st catch:", err);
+//     });
+
+// Promise.reject("Rejected value")
+//     .catch((data) => {
+//         console.log("Caught:", data);
+//         throw new Error("Error from catch");
+//     })
+//     .catch((err) => {
+//         console.log("Caught:", err.message);
+//     });
+
+
+// Finally based o/p questions
+
+// Promise.resolve("Initial data")
+//     .finally(() => {
+//         console.log("Finally block executed");
+//     })
+//     .then((data) => {
+//         console.log("Resolved:", data);
+//     });
+
+//if finally block throws an error or return a promise that will be rejected, the error from finally block will be the outcome of the chain 
+
+// Promise.reject("Initial rejection")
+// .finally((data) => {
+//     console.log(data);
+//     throw new Error("I am an error");
+//     // return Promise.reject("rejection from finally")
+// })
+// .catch((err) => {
+//     console.log("Caught:", err);
+// });
+
+// Promise.reject("Initial rejection")
+// .finally((data) => {
+//     console.log(data);
+// })
+// .catch((err) => {
+//     console.log("Caught:", err);
+// });
+
+// when finally block returns a value or a promise that will not be rejected, it doesnt influence the coutcome of parent promise. 
+
+// Promise.resolve("Initial data")
+// .finally((data) => {
+//     console.log(data);
+//     return "finally resolved"
+// })
+// .then((data) => {
+//     console.log("Resolved:", data);
+// });
+
+
+
