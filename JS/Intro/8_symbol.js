@@ -15,6 +15,8 @@ console.log(a1===a2); //false
 const symbol1= Symbol("description");
 const symbol2= Symbol("description");
 
+
+console.log(symbol1===symbol2); //false
 const person={
     name:"Nidhi",
     age:23,
@@ -83,3 +85,8 @@ console.log(Object.keys(combined));
 
 console.log(Object.getOwnPropertySymbols(combined));
 
+
+
+// const str="hello"+"bye"; //str is primitve
+// str.toLowerCase() -> 
+// const str=new String("hello") ; 
