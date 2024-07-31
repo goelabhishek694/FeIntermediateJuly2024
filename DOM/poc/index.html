@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="greet">Hello</h1>
+    <h1>World</h1>
+    <h2>I am h2</h2>
+    <h3>I am h3</h3>
+    <div>
+        i am text
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, est. Ad libero asperiores recusandae possimus veritatis autem? Labore velit maiores eaque id laborum? Sint aspernatur aliquid culpa optio ad voluptate?</p>
+        another text ndoe
+        <p class="para" style="display: none;">Lorem ipsum                     dolor sit amet, consectetur adipisicing elit. Debitis laboriosam explicabo culpa eum dolores inventore dignissimos sed aliquam vitae, possimus, fugiat doloribus autem voluptates harum nobis ea voluptatum! Beatae, repellendus?</p>
+        <p class="para">Lorem, ipsum dol            or sit amet consectetur adipisicing elit. Commodi dolor, animi sint excepturi explicabo quam, nostrum mollitia quod fugit hic nam nobis quia non, velit alias facilis obcaecati totam quibusdam!</p>
+    </div>
+    <input type="text">
+    <input type="password" id="special">
+    <input type="text">
+    <button>click</button>
+    <h1>Bye bye</h1>
+
+    <!-- shopping list  -->
+    <h2>Shopping List</h2>
+    <ul>
+
+    </ul>
+
+    <!-- add 7th li in the list below -->
+
+    <ul class="num">
+        
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+<!-- TODO  -->
+
+    <h2>Todos</h2>
+    <input type="text" id="todoInput">
+    <button class="todoBtn">Click Me</button>
+    <ul class="todo"></ul>
+
+
+    <script>
+
+        //query selector
+        // const h1Elem=document.querySelector("h1");
+        // const h1Elem=document.querySelector(".greet");
+        // const inputPassEle=document.querySelector("#special");
+        // const inputPassEle=document.getElementById("#special");
+        // const inputPassEle2=document.querySelector("");
+        // console.log(h1Elem);
+        // console.log(inputPassEle);
+
+        // const allH1=document.querySelectorAll("h1");
+        // console.log(allH1); //nodelist
+        //nodelist is not an array, we cannot do filter reduce
+        // console.log(allH1.length);
+        // console.log(allH1[0]);
+        // allH1.forEach((ele)=>console.log(ele));
+        //conver nodelist into array 
+        // const allH12Arr = Array.from(allH1);
+
+        // allH12Arr.filter((ele)=>console.log(ele));
+
+        // const h1Ele=document.getElementsByClassName("greet");
+        // console.log(h1Ele);
+        // const paraEle=document.getElementsByClassName("para");
+        // console.log(paraEle);
+
+        // console.log(paraEle.length);
+        // console.log(paraEle[0]);
+        // paraEle.forEach(ele=>console.log(ele));
+        
+        // const allPara2Arr = Array.from(paraEle);
+        // allPara2Arr.forEach(ele=>console.log(ele));
+
+        //innerHtml,innerText,textContent
+        const div=document.querySelector("div");
+        // console.log("InnerHtml ", div.innerHTML); //html tag + inner text
+        // console.log("innerText ", div.innerText); //shows text as it appears on the screen
+        // console.log("textContent ", div.textContent); //reads text as it is in the markup
+
+        // style attribute 
+        //use this attribute over dom ele to add styling
+        div.style.backgroundColor="black";
+        div.style.color="white";
+
+        //getAttribute 
+        console.log(div.children); //html collection
+        console.log(div.childNodes); //nodelist -> 
+        const para2=div.children[1];
+        let attributeVal=para2.getAttribute("style");
+        console.log(attributeVal);
+
+        //setAtrributes 
+        const allInput=document.querySelectorAll("input[type='text']");
+        allInput[1].setAttribute("type","email");
+        allInput[0].setAttribute("class","userEmail");
+        
+        
+        //CRUD
+        const li=document.createElement("li");
+        li.textContent="Tomato";
+
+        const ul=document.querySelector("ul");
+        let a=ul.appendChild(li); //return appended ele
+        // let a=ul.append(li); //does not return anything
+        console.log(a);
+
+        //adding li in 7th position
+
+        const li7=document.createElement("li");
+        li7.innerText='7';
+
+        const numUl=document.querySelector(".num");
+        const allListEle=numUl.children;
+        console.log(allListEle);
+        const li8=allListEle[6];
+        // li8.innerText="potato";
+        //(eletoBeInserted, eleBefore)
+        numUl.insertBefore(li7,li8);
+
+        //delete
+        // setTimeout(()=>{
+        //     numUl.remove()
+        // },3000)
+
+        const allList=Array.from(allListEle);
+        allList.forEach(ele=>ele.style.color="red");
+
+        const inputEle=document.getElementById("todoInput");
+        const btn=document.querySelector(".todoBtn");
+        const ulEle=document.querySelector(".todo");
+        btn.addEventListener("click",addTodo);
+
+        function addTodo(){
+            // console.log("i am called when button is clicked");
+            //gwet the task
+            let task=inputEle.value;
+            // console.log(task);
+            // create li tag, add that task inside it
+            const li=document.createElement("li");
+            li.textContent=task;
+            //append li tag into ul
+            ulEle.appendChild(li);
+            //empty thte input box
+            inputEle.value="";
+        }
+
+        //example of html collection , it is live 
+        // const allparas=document.getElementsByClassName("para")
+        // console.log(allparas);
+        // const newPara=document.createElement("p");
+        // newPara.setAttribute("class","para");
+        // // newPara.innerText="hello i am new";
+        // console.log(newPara);
+        // div.appendChild(newPara);
+        // console.log(allparas);
+
+        //nodelist -> not always static. 
+        // querySelectorAll -> nodelist -> static 
+
+        // const allparas=document.querySelectorAll(".para");
+        // console.log(allparas);
+        // const newPara=document.createElement("p");
+        // newPara.setAttribute("class","para");
+        // // newPara.innerText="hello i am new";
+        // console.log(newPara);
+        // div.appendChild(newPara);
+        // console.log(allparas);
+
+        //getElementsByName -> nodelist -> live 
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
