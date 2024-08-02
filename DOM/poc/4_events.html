@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(0, 255, 34);
+        }
+    </style>
+</head>
+<body>
+    <button>Click Me</button>
+    <input type="text">
+    <ul></ul>
+    <div class="box"></div>
+    <script>
+
+        const box=document.querySelector(".box");
+        box.addEventListener("click",(event)=>{
+            console.log("click event occured");
+            // console.log(event);
+        })
+
+        box.addEventListener("dblclick",(event)=>{
+            console.log("double click event occured");
+            // console.log(event);
+        })
+
+        box.addEventListener("mousedown",(event)=>{
+            console.log("mousedown event occured");
+            // console.log(event);
+        })
+
+        box.addEventListener("mouseup",(event)=>{
+            console.log("mouseup event occured");
+            // console.log(event);
+        })
+
+        box.addEventListener("mouseenter",(event)=>{
+            console.log("mouseenter event occured");
+            box.style.backgroundColor="blue"
+            // console.log(event);
+        })
+
+        box.addEventListener("mousemove",(event)=>{
+            console.log("mousemove event occured");
+            console.log(event);
+            box.style.backgroundColor="black"
+        })
+
+        box.addEventListener("mouseleave",(event)=>{
+            console.log("mouseleave event occured");
+            // console.log(event);
+            box.style.backgroundColor="green"
+        })
+
+        //Keyboard events
+        let input=document.querySelector("input");
+        input.addEventListener("keydown",(e)=>{
+            console.log("keydown event");
+            // console.log(e);
+        })
+        input.addEventListener("keyup",(e)=>{
+            console.log("keyup event");
+            // console.log(e);
+        })
+        input.addEventListener("keypress",(e)=>{
+            console.log("keypress event");
+            console.log(e);
+        })
+        
+
+
+    </script>
+</body>
+</html>

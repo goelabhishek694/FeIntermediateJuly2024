@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shopping List</h1>
+    <ul></ul>
+    <script>
+        const ul=document.querySelector("ul");
+        // 1.01611328125
+        // console.time();
+        // for(let i=0;i<1000;i++){
+        //     const li=document.createElement("li");
+        //     li.textContent=`Item ${i+1}`;
+        //     ul.appendChild(li);
+        // }
+        // console.timeEnd();
+
+        // 0.536865234375 ms
+        // console.time();
+        // const div=document.createElement("div");
+        // for(let i=0;i<1000;i++){
+        //     const li=document.createElement("li");
+        //     li.textContent=`Item ${i+1}`;
+        //     div.appendChild(li);
+        // }
+        // ul.appendChild(div);
+        // console.timeEnd();
+
+        // default: 0.950927734375 ms
+        console.time();
+        //fragment is a temporary node with which we can attach a lot of node substructures and when we append that fragment to actual DOM element. the fragment disappears. 
+        const fragment=document.createDocumentFragment();
+        console.log(fragment);
+        for(let i=0;i<1000;i++){
+            const li=document.createElement("li");
+            li.textContent=`Item ${i+1}`;
+            fragment.appendChild(li);
+        }
+        ul.appendChild(fragment);
+        console.timeEnd();
+    </script>
+</body>
+</html>

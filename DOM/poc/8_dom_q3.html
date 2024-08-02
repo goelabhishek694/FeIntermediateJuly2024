@@ -1,0 +1,57 @@
+<!-- You're creating an online shopping website with a list of products.
+Implement Add to cart button by only adding a single event listener to achieve it
+
+Consider the following HTML structure: -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="productList">
+        <h1>All Products</h1>
+        <div class="product">
+            <h3>Product 1</h3>
+            <p>Price: $10</p>
+            <button class="add-to-cart" >Add to Cart</button>
+            <button class="wishlist" >Wishlist</button>
+        </div>
+        <div class="product">
+            <h3>Product 2</h3>
+            <p>Price: $20</p>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart" >Wishlist</button>
+        </div>
+        <div class="product">
+            <h3>Product 3</h3>
+            <p>Price: $30</p>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="wishlist" >Wishlist</button>
+        </div>
+    </div>
+    <script>
+        const productList=document.getElementById("productList");
+        productList.addEventListener("click",(e)=>{
+            console.log(e.target);
+            let ele=e.target;
+            let parent=ele.parentNode;
+            console.log(parent);
+            if(ele.className == "add-to-cart"){
+                let pEle=ele.previousElementSibling;
+                let productName=pEle.previousElementSibling;
+                console.log(pEle.textContent);
+                console.log(productName.textContent);
+            }else if(ele.className == "wishlist"){
+                console.log("product added to wishlist");
+            }
+        })
+    </script>
+</body>
+
+</html> 

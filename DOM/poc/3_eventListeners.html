@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button onclick="cb()">Click Me</button> -->
+    <button>Click Me</button>
+    <input type="text">
+    <ul></ul>
+    <div class="box"></div>
+    <script>
+        const btn=document.querySelector("button");
+        //1 inline events 
+        //(i)
+        // function cb(){
+        //     console.log("button was clicked");
+        // }
+        //(ii)
+        // btn.onclick=function cb(){
+        //     console.log("button was clicked");
+        // }
+        // btn.onclick=function cb(){
+        //     console.log("i am fake");
+        // }
+
+        //2 
+        btn.addEventListener("click",function(){
+            console.log("button was clicked");
+        },{once:true})
+
+        btn.addEventListener("click",function(){
+            console.log("i am also called");
+        })
+
+    </script>
+</body>
+</html>

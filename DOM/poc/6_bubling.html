@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div[id] {
+            border: 1px solid red;
+        }
+
+        #outer_box {
+            height: 10rem;
+            width: 10rem;
+            background-color: lightblue;
+        }
+
+        #inner_box {
+            height: 50%;
+            width: 50%;
+            background-color: lightgreen;
+            margin-top: 10px;
+        }
+
+        #button {
+            margin-top: 3px;
+            background-color: lightsalmon;
+            width: 50%;
+            margin-left: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Bubbling</h1>
+    <div id="outer_box">outer-box
+        <div id="inner_box">inner-box
+            <div id="button">Click Me</div>
+        </div>
+    </div>
+    <script>
+        const outerBox=document.querySelector("#outer_box");
+        const innerBox=document.querySelector("#inner_box");
+        const btn=document.querySelector("#button");
+
+        document.addEventListener("click",(e)=>{
+            console.log("document is clicked");
+            console.log(e.target); //ele on which event occured originally
+            console.log(e.currentTarget); // ele on which listener is present
+        })
+        outerBox.addEventListener("click",(e)=>{
+            console.log("outerBox is clicked");
+            console.log(e.target); //ele on which event occured originally
+            console.log(e.currentTarget); // ele on which listener is present
+        })
+        innerBox.addEventListener("click",(e)=>{
+            console.log("innerBox is clicked");
+            console.log(e.target); //ele on which event occured originally
+            console.log(e.currentTarget); // ele on which listener is present
+        })
+
+        btn.addEventListener("click",()=>{
+            console.log("another click event from btn 1st");
+        })
+
+        btn.addEventListener("click",(e)=>{
+            console.log("btn is clicked 2nd");
+            console.log(e);
+            console.log(e.target); //ele on which event occured originally
+            console.log(e.currentTarget); // ele on which listener is present
+            e.stopPropagation(); // click event does not propogate furhter to inner box. so it stops at btn only
+            e.stopImmediatePropagation(); // does not allow multiple cb of the same event to be called
+        })
+
+        btn.addEventListener("click",()=>{
+            console.log("another click event from btn 3rd");
+        })
+
+        // mouse events 
+        // "mouseover" and "mouseout"
+    </script>
+</body>
+</html>
