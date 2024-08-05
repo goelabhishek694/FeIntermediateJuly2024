@@ -5,6 +5,7 @@ btns.addEventListener("click",handleClick);
 
 let hrs,min,sec;
 let timeLeftInSec;
+let timerId;
 
 function handleInput(e){
     const inputEle = e.target;
@@ -60,7 +61,7 @@ function handleStart(){
 function startTimer(totalTimeInSecs){
     if(totalTimeInSecs==0) return;
     display(totalTimeInSecs);
-    let timerId=setInterval(()=>{
+    timerId=setInterval(()=>{
         //start deducting 1 each sec
         timeLeftInSec = --totalTimeInSecs;
         display(timeLeftInSec);
@@ -77,5 +78,26 @@ function display(timeInSecs){
     let mins=parseInt(timeInSecs/60);
     let secs=timeInSecs%60;
     console.log(hrs,mins,secs);
+    Array.from(timerInput.children).forEach(ele=>{
+        let eleType=ele.getAttribute("id");
+        if(eleType=="hr") ele.value=hrs>9?hrs:"0"+hrs
+        else if(eleType=="min") ele.value=mins>9?mins:"0"+mins
+        else if(eleType=="sec") ele.value=secs>9?secs:"0"+secs
+    })
+}
 
+function handlePause(){
+    clearInterval(timerId)
+}
+
+function handleContinue(){
+    startTimer(timeLeftInSec);
+}
+
+function handleReset(){
+    clearInterval(timerId);
+    Array.from(timerInput.children).forEach(ele=>{
+        ele.value="00"
+    });
+    timeLeftInSec=0;
 }
