@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #textArea{
+            width: 300px;
+            height: 200px;
+            border: 1px solid red;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="textArea" contenteditable="true">Select some text in this area to see the events in action</div>
+    <script>
+        const textArea=document.getElementById("textArea");
+        textArea.addEventListener("mousedown",()=>{
+            console.log("mousedown event");
+        })
+        // textArea.addEventListener("mousemove",()=>{
+        //     console.log("mousemove event");
+        // })
+        textArea.addEventListener("mouseup",()=>{
+            console.log("mouseup event");
+        })
+        textArea.addEventListener("selectionchange",(e)=>{
+            console.log("selectionchange event");
+            console.log(e);
+            console.log(document.getSelection());
+        })
+        // textArea.addEventListener("mousedown",()=>{
+        //     console.log("mousedown event");
+        // })
+    </script>
+</body>
+</html>
