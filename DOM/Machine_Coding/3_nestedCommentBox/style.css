@@ -1,0 +1,27 @@
+.container{
+    padding: 1rem 3rem;
+}
+
+.comment-container{
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    border-left: 1px solid black;
+}
+
+.comment-text{
+    margin-bottom: 0.5rem;
+}
+
+.comment-card{}
+
+.reply{
+    color: red;
+    padding-left: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.comment-container :not(:first-child){
+    margin-left: 4rem;
+}
