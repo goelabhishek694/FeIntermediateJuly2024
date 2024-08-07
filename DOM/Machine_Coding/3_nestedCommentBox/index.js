@@ -1,3 +1,4 @@
+"use strict"
 const container = document.querySelector(".container");
 
 container.addEventListener("click",function(e){

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Closure Memory Leak</h1>
+    <p>a memory leak occurs when programmers cretae a mem in heap and forgt to delete it . the consequence of mem leak is that is it redcues the performance of computer by reducing the amount of available memory </p>
+    <script>
+
+        let bigObject = null;
+        let replace = function(){
+            console.log("something");
+            let originalThing = bigObject;
+            let unusedFn = function(){
+                if(originalThing){
+                    console.log("hi");
+                }
+            }
+            bigObject = {
+                longStr: new Array(1000000),
+                greet: function(){
+                    console.log("hi Inside");
+                }
+            }
+        }
+
+        setInterval(()=>{
+            replace(); //10 times -> closure 10 times -> bigObject -> 10 times 
+        },1000)
+    </script>
+</body>
+</html>

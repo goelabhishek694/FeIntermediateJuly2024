@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict"
+        globalVar = 10;
+        function globalFunction(){
+            console.log(globalVar);
+        }
+        function someOtherFunc(){
+            //this is not creating a new varibale and assigning value to it. we are accidentaly changing the global scope varibale. this is called scope polutioning. 
+            globalVar = "I am polluted !"
+        }
+        globalVar++;
+        globalFunction();
+        someOtherFunc();
+        globalFunction();
+
+    </script>
+</body>
+</html>

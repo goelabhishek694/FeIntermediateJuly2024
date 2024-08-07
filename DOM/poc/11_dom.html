@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <h1>I am in H1</h1>
+    </p>
+    <script>
+        let a = document.querySelector("h1");
+        let p = document.querySelector("p");
+
+        console.log(a); 
+        a.remove();
+        console.log(a);
+        a = null; //garbage collected 
+        console.log(a);
+
+        //automatic garbage collection 
+        // memory can be freed
+        // scans from top to bottom -> looks for varibales that are not used in the program . removes it from memory 
+        let object={
+            z:10
+        };
+        object=null;
+let anotherObejct = object;
+        object -> null 
+        anotherObejct= null;
+        //when no one is referencing an object / or using it , it gets garbage colected
+        // 4k -> {
+        //     z:10
+        // }
+
+        // 4k - > empty
+
+
+    </script>
+</body>
+</html>
