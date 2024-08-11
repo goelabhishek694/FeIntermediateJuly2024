@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+html,
+body {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+/* actual css */
+.auto-complete{
+    border: 2px solid rgb(185, 144, 144);
+    width: 30rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#search-input{
+    width: 90%;
+    height: 3rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
