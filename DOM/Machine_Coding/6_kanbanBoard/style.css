@@ -1,0 +1,146 @@
+:root{
+    --pink: lightpink;
+    --blue: lightblue;
+    --green: lightgreen;
+    --purple: rgb(224, 144, 238);
+    --white: white;
+}
+
+html{
+    box-sizing: border-box;
+    /* font-size: 20px; */
+}
+html,body{margin:0}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+/* styling starts now */
+
+.toolbox-cont{
+    height: 5rem;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+.toolbox-priority-cont, .action-btn-cont{
+    height: 70%;
+    background-color: gray;
+    width: 20rem;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.color{
+    height: 50%;
+    width: 4rem;
+}
+
+.pink{
+    background-color: var(--pink);
+}
+
+.blue{
+background-color: var(--blue);
+}
+
+.green{
+background-color: var(--green);
+}
+
+.purple{
+background-color: var(--purple);
+}
+
+.active{
+    border: 5px solid var(--white);
+}
+
+.action-btn-cont{
+    width: 10rem;
+}
+.add-btn, .remove-btn{
+    font-size: 1.8rem;
+}
+
+.main-cont{
+    width: 100vw;
+    display: flex;
+    gap:2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    justify-content: space-evenly;
+}
+
+.ticket-cont{
+    height: 10rem;
+    width: 15rem;
+    background-color:  #ECF0F1;
+    position: relative;
+}
+
+.ticket-color{
+    height: 10%;
+}
+
+.ticket-id{
+    height: 10%;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.ticket-area{
+    height: 70%;
+    padding: 5px;
+    font-size: 1.25rem;
+}
+
+.lock-unlock{
+    height: 10%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.modal-cont{
+    position: fixed;
+    height: 50vh;
+    width: 50vw;
+    top: 25vh;
+    left: 10vw;
+    /* display: flex; */
+    display: none;
+}
+
+.textarea-cont{
+    /* height: 50vh; */
+    width: 75%;
+    font-size: 2rem;
+    resize: none;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: 10px 10px 40px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 40px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 40px -4px rgba(0, 0, 0, 0.75);
+}
+
+.priority-color-cont{
+    height: 100%;
+    background-color: black;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.priority-color{
+    height: 3rem;
+    width: 5rem;
+}

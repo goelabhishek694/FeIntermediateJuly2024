@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="color pink"></div>
+            <div class="color blue"></div>
+            <div class="color green"></div>
+            <div class="color purple"></div>
+        </div>
+        <div class="action-btn-cont">
+            <div class="add-btn">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="remove-btn">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-cont">
+        <textarea class="textarea-cont" placeholder="Enter Your Task" rows = "10"
+        ></textarea>
+        <div class="priority-color-cont">
+            <div class="priority-color pink"></div>
+            <div class="priority-color blue"></div>
+            <div class="priority-color green active"></div>
+            <div class="priority-color purple"></div>
+        </div>
+    </div>
+
+    <div class="main-cont">
+        <!-- <div class="ticket-cont">
+            <div class="ticket-color green"></div>
+            <div class="ticket-id">#qwe234</div>
+            <div class="ticket-area"></div>
+            <div class="lock-unlock">
+                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock-open"></i>
+            </div>
+        </div> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
