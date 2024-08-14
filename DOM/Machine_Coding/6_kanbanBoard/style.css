@@ -116,6 +116,7 @@ background-color: var(--purple);
     left: 10vw;
     /* display: flex; */
     display: none;
+    z-index: 1;
 }
 
 .textarea-cont{
