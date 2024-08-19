@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/React.js"></script>
+    <script src="./lib/ReactDOM.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        function Hello(){
+            let name="Scaler";
+            return `<div>
+                <h1>Hi i am ${name}</h1>
+                </div>`
+        }
+        ReactDOM.render(Hello,document.getElementById("root"));
+    </script>
+</body>
+</html>

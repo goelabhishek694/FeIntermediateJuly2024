@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <!-- very important tpo create a root as all the things that we will build will go inside the root  -->
+     <div id="root"></div>
+     <div>
+        <h1></h1>
+        <img src="" alt="">
+        <h3></h3>
+     </div>
+     <script>
+        //get the root element where the react app will be mounted 
+        const rootElement =  document.getElementById("root");
+
+        //create an element using react.createElement
+            // 1. the tag name of the html element to create 
+            // 2. the properties of the ele 
+            // 3. the children element or text content
+        // const headingEle = React.createElement("h1",null,"Hello from React");
+        const headingEle = React.createElement("h1",{ style: {color: "blue"}},"Hello from React");
+
+        // render the Element to the DOM using reactDOM 
+            // 1. the react Element to render
+            // 2. the dom element where react element should be mounted 
+        ReactDOM.render(headingEle , rootElement);
+     </script>
+</body>
+</html>
