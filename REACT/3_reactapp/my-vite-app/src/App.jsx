@@ -1,21 +1,29 @@
 import "./App.css"
-import Button from "./components/Button";
-import ConditionalRendering from "./components/ConditionalRendering";
-import FirstComponent from "./components/FirstComponent"
-import RenderData from "./components/RenderData";
+import AdvancedForm from "./components/AdvancedForm";
+import Form from "./components/Form";
+// import Button from "./components/Button";
+// import ConditionalRendering from "./components/ConditionalRendering";
+// import FirstComponent from "./components/FirstComponent"
+// import RenderData from "./components/RenderData";
+// import UseState from "./components/UseState";
 
 function App() {
   console.log("i was called");
-  const isLoggedIn=false;
-  const username="Kishore";
+  // const isLoggedIn=false;
+  // const username="Kishore";
   return (
     <>
-     <FirstComponent name="Abhishek"></FirstComponent>
+     {/* <FirstComponent name="Abhishek"></FirstComponent>
      <FirstComponent name="Manish"></FirstComponent>
      <FirstComponent name="Shobhit"></FirstComponent>
      <RenderData></RenderData>
      <ConditionalRendering isLoggedIn={isLoggedIn} username={username}></ConditionalRendering>
-     <Button></Button>
+     <Button></Button> */}
+     {/* <UseState></UseState>
+     <UseState></UseState>
+     <UseState></UseState> */}
+     {/* <Form></Form> */}
+     <AdvancedForm></AdvancedForm>
     </>
   )
 }
