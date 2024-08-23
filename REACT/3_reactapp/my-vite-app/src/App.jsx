@@ -1,6 +1,9 @@
+import { useState } from "react"
 import "./App.css"
-import AdvancedForm from "./components/AdvancedForm";
-import Form from "./components/Form";
+// import AdvancedForm2 from "./components/AdvancedForm2";
+import TemeperatureInput from "./components/TemeperatureInput";
+import TemperatureDisplay from "./components/TemperatureDisplay";
+// import Form from "./components/Form";
 // import Button from "./components/Button";
 // import ConditionalRendering from "./components/ConditionalRendering";
 // import FirstComponent from "./components/FirstComponent"
@@ -11,6 +14,8 @@ function App() {
   console.log("i was called");
   // const isLoggedIn=false;
   // const username="Kishore";
+  const [temperature,setTemperature] = useState("");
+  const handleTemperatureChange=(temp)=>setTemperature(temp)
   return (
     <>
      {/* <FirstComponent name="Abhishek"></FirstComponent>
@@ -23,7 +28,9 @@ function App() {
      <UseState></UseState>
      <UseState></UseState> */}
      {/* <Form></Form> */}
-     <AdvancedForm></AdvancedForm>
+     {/* <AdvancedForm2></AdvancedForm2> */}
+     <TemeperatureInput temperature={temperature} handleTemperatureChange={handleTemperatureChange}></TemeperatureInput>
+     <TemperatureDisplay temperature={temperature}></TemperatureDisplay>
     </>
   )
 }
