@@ -1,8 +1,10 @@
-import { useState } from "react"
+// import { useState } from "react"
 import "./App.css"
+import ReactRouterDOM from "./components/ReactRouterDOM";
 // import AdvancedForm2 from "./components/AdvancedForm2";
-import TemeperatureInput from "./components/TemeperatureInput";
-import TemperatureDisplay from "./components/TemperatureDisplay";
+// import TemeperatureInput from "./components/TemeperatureInput";
+// import TemperatureDisplay from "./components/TemperatureDisplay";
+// import UseEffectVariations from "./components/UseEffectVariations";
 // import Form from "./components/Form";
 // import Button from "./components/Button";
 // import ConditionalRendering from "./components/ConditionalRendering";
@@ -11,11 +13,11 @@ import TemperatureDisplay from "./components/TemperatureDisplay";
 // import UseState from "./components/UseState";
 
 function App() {
-  console.log("i was called");
+  // console.log("i was called");
   // const isLoggedIn=false;
   // const username="Kishore";
-  const [temperature,setTemperature] = useState("");
-  const handleTemperatureChange=(temp)=>setTemperature(temp)
+  // const [temperature,setTemperature] = useState("");
+  // const handleTemperatureChange=(temp)=>setTemperature(temp)
   return (
     <>
      {/* <FirstComponent name="Abhishek"></FirstComponent>
@@ -29,8 +31,10 @@ function App() {
      <UseState></UseState> */}
      {/* <Form></Form> */}
      {/* <AdvancedForm2></AdvancedForm2> */}
-     <TemeperatureInput temperature={temperature} handleTemperatureChange={handleTemperatureChange}></TemeperatureInput>
-     <TemperatureDisplay temperature={temperature}></TemperatureDisplay>
+     {/* <TemeperatureInput temperature={temperature} handleTemperatureChange={handleTemperatureChange}></TemeperatureInput>
+     <TemperatureDisplay temperature={temperature}></TemperatureDisplay> */}
+     {/* <UseEffectVariations></UseEffectVariations> */}
+     <ReactRouterDOM></ReactRouterDOM>
     </>
   )
 }
