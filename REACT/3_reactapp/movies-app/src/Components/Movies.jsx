@@ -23,6 +23,14 @@ function Movies() {
       title: "Movie 5",
     },
   ]);
+  const[pageNo,setPageNo] = useState(1);
+  const handleNext=()=>{
+    setPageNo(pageNo+1);
+  }
+  const handlePrevious=()=>{
+    if(pageNo==1)return
+    setPageNo(pageNo-1)
+  }
   return <div>
     <div className="text-2xl font-bold text-center m-5">
         <h1>Trending Movies</h1>
@@ -35,6 +43,11 @@ function Movies() {
                 </div>
             )
         })}
+    </div>
+    <div className="flex justify-center gap-2 bg-gray-400 p-4 h-[50px] w-full mt-8">
+        <div onClick={handlePrevious} className="px-8"><i class="fa-solid fa-arrow-left"></i></div>
+        <div>{pageNo}</div>
+        <div onClick={handleNext} className="px-8"><i class="fa-solid fa-arrow-right"></i></div>
     </div>
   </div>;
 }
