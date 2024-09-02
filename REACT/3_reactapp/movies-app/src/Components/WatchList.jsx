@@ -50,7 +50,13 @@ function WatchList() {
     setCurrGenre(genre);
   };
 
-  
+  const removeFromWatchList = (id)=>{
+    let restOfTheMovies=watchlist.filter(movie=>{
+      return movie.id!=id;
+    })
+    setWatchlist(restOfTheMovies);
+    localStorage.setItem("watchlist",JSON.stringify(restOfTheMovies));
+  }  
 
   return (
     <>
@@ -100,6 +106,11 @@ function WatchList() {
                   <div>Genre</div>
                 </div>
               </th>
+              <th>
+                <div className="flex">
+                  <div>Delete</div>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -134,6 +145,7 @@ function WatchList() {
                       <td className="pl-6 py-4">{vote_average}</td>
                       <td className="pl-6 py-4">{popularity}</td>
                       <td className="pl-6 py-4">{genreids[genre_ids?.[0]]}</td>
+                      <td className="pl-6 py-4 text-red-500" onClick={()=>removeFromWatchList(id)}><i class="fa-solid fa-trash"></i></td>
                     </tr>
                   );
                 }
