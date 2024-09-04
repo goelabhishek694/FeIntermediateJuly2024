@@ -69,7 +69,7 @@ function Child({name,setName}){
         <h3>Child</h3>
         <div>⬇️</div>
         <p>{name}</p>
-        <p>{items}</p>
+        <p>{items.rice}</p>
         {/* <p>{veggies.mushroom}</p> */}
         <button onClick={()=>setName("Scaler")}>Change Name</button>
     </>
