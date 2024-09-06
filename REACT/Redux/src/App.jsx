@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import store from './redux/store';
 import CounterRedux from './components/reduxComponents/CounterRedux';
 import TodoRedux from './components/reduxComponents/TodoRedux';
+import UserRedux from './components/reduxComponents/UserRedux';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +14,8 @@ function App() {
   return (
 
       // <CounterRedux></CounterRedux>
-      <TodoRedux></TodoRedux>
+      // <TodoRedux></TodoRedux>
+      <UserRedux></UserRedux>
   
   )
 }
