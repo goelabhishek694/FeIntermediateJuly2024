@@ -8,12 +8,12 @@ function App() {
 
   return (
     <>
-      {/* <Navbar></Navbar>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/watchlist" element={<WatchList></WatchList>}></Route>
-      </Routes> */}
-      <Context></Context>
+      </Routes>
+      {/* <Context></Context> */}
     </>
   )
 }
