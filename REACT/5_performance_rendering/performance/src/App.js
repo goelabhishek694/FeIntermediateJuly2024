@@ -6,6 +6,8 @@ import Navbar from './Components/Navbar';
 // import Aboutpage from './Components/Aboutpage';
 // import ContactPage from './Components/ContactPage';
 import { useEffect, useState , lazy , Suspense} from 'react';
+import UseMemo from './Components/UseMemo';
+import UseCallback from './Components/UseCallback';
 
 const Homepage = lazy(() => import('./Components/Homepage'));
 const Aboutpage = lazy(() => import('./Components/Aboutpage'));
@@ -17,27 +19,29 @@ function App() {
   // const [ContactPage, setContactPage] =  useState(null);
 
   return (
-    <>
-    <Navbar 
-    // setHomepage={setHomepage} 
-    // setAboutpage={setAboutpage} 
-    // setContactPage={setContactPage}
-    ></Navbar>
-      {/* <Routes>
-        <Route path="/" element={Homepage ? <Homepage/> : <div>Loading....</div>}/>
-        <Route path="/about" element={Aboutpage ? <Aboutpage/> : <div>Loading....</div>}/>
-        <Route path="/contact" element={ContactPage ? <ContactPage/> : <div>Loading....</div>}/>
-      </Routes> */}
+    // <>
+    // <Navbar 
+    // // setHomepage={setHomepage} 
+    // // setAboutpage={setAboutpage} 
+    // // setContactPage={setContactPage}
+    // ></Navbar>
+    //   {/* <Routes>
+    //     <Route path="/" element={Homepage ? <Homepage/> : <div>Loading....</div>}/>
+    //     <Route path="/about" element={Aboutpage ? <Aboutpage/> : <div>Loading....</div>}/>
+    //     <Route path="/contact" element={ContactPage ? <ContactPage/> : <div>Loading....</div>}/>
+    //   </Routes> */}
 
-      {/* lazy loading and suspense */}
-      <Suspense fallback={<div>Loading....</div>}>
-        <Routes>
-          <Route path="/" element={ <Homepage/> }/>
-          <Route path="/about" element={ <Aboutpage/> }/>
-          <Route path="/contact" element={ <ContactPage/> }/>
-        </Routes>
-      </Suspense>
-    </>
+    //   {/* lazy loading and suspense */}
+    //   <Suspense fallback={<div>Loading....</div>}>
+    //     <Routes>
+    //       <Route path="/" element={ <Homepage/> }/>
+    //       <Route path="/about" element={ <Aboutpage/> }/>
+    //       <Route path="/contact" element={ <ContactPage/> }/>
+    //     </Routes>
+    //   </Suspense>
+    // </>
+      // <UseMemo></UseMemo>
+      <UseCallback></UseCallback>
   );
 }
 
