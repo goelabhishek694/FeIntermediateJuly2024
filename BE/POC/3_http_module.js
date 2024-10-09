@@ -21,7 +21,7 @@ const server = http.createServer((req,res)=>{
                 console.log(err);
                 res.write(`Internal server error , ${err.message}`)
             }else{
-                console.log(data);
+                // console.log(data);
                 res.end(data);
             }
         })
@@ -47,4 +47,4 @@ server.listen(port,host, () => {
 
 // os module 
 // libuv library 
-// command line prject 
+// command line project 
