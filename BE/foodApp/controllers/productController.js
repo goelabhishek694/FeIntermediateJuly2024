@@ -19,7 +19,7 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
 
     const allProducts = await ProductModel.find();
-    // const allProducts = await ProductModel.findOne();
+    // const allProducts = await ProductModel.findOne().exec();
     // const allProducts = await ProductModel.find({product_price:{ $gte : 10, $lte: 200}});
 
     console.log("hello", allProducts);
