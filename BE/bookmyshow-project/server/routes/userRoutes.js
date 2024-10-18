@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const authMiddleware = require("../middlewares/authMiddleware");
+const userModel = require("../models/userModel");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
@@ -58,6 +60,17 @@ router.post("/login", async (req,res) => {
         console.log(err);
         res.status(500).json({"message":"An error has occured, pls try gain later"})
     }
+})
+
+router.get("/current", authMiddleware, async(req,res) => {
+    const user = await User.findById(req.body.userId).select("-password");
+    // const user = await User.findById(req.body.userId).select("-password").select("-email");
+    console.log("in current route")
+    res.send({
+        success: true,
+        message: "you are authorized to go to protected route",
+        data: user
+    })
 })
 
 module.exports = router;
