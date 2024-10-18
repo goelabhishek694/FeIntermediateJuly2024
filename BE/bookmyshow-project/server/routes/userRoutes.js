@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req,res) => {
     try{
@@ -36,17 +37,22 @@ router.post("/login", async (req,res) => {
                 message:"User does not exists. Please register"
             })
         }
-
+        
         if(req.body.password != user.password ){
             return res.status(401).json({
                 success: false,
                 message:"Invalid credentials"
             })
         }
-
+        
+        console.log(user);
+        const token = jwt.sign({userId: user._id}, process.env.jwt_secret, {"expiresIn":"1d"});
+        console.log(token);
+        
         return res.status(200).json({
             success: true,
-            message:"login successful"
+            message:"login successful",
+            data: token
         })
     }catch(err){
         console.log(err);
