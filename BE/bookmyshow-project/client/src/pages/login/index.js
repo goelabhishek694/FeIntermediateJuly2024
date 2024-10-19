@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Button, Form, Input, message} from "antd";
 import {Link, useNavigate} from "react-router-dom";
 import { LoginUser } from '../../calls/users';
 
 function Login() {
+    useEffect(() => {
+        if(localStorage.getItem("token")){
+            navigate("/");
+        }
+    },[]);
     const navigate = useNavigate();
     const onFinish = async (values) => {
         try{
