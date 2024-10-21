@@ -18,18 +18,18 @@ function MovieList() {
   const dispatch = useDispatch();
 
   //get all movies
+  const getData = async () => {
+    dispatch(ShowLoading());
+    const resp = await getAllMovies();
+    const allMovies = resp.data;
+    setMovies(
+      allMovies.map((item) => {
+        return { ...item, key: `movie${item._id}` };
+      })
+    );
+    dispatch(HideLoading());
+  };
   useEffect(() => {
-    const getData = async () => {
-      dispatch(ShowLoading());
-      const resp = await getAllMovies();
-      const allMovies = resp.data;
-      setMovies(
-        allMovies.map((item) => {
-          return { ...item, key: `movie${item._id}` };
-        })
-      );
-      dispatch(HideLoading());
-    };
     getData();
   }, []);
 
@@ -123,11 +123,12 @@ function MovieList() {
         <Table dataSource={movies} columns={tableHeadings}></Table>
         {isModalOpen && (
           <MovieForm
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            selectedMovie={selectedMovie}
-            formType={formType}
-            setSelectedMovie={setSelectedMovie}
+            isModalOpen = { isModalOpen }
+            setIsModalOpen = { setIsModalOpen }
+            selectedMovie = { selectedMovie }
+            formType = { formType }
+            setSelectedMovie = { setSelectedMovie }
+            getData = { getData }
             //
           />
         )}
@@ -138,6 +139,7 @@ function MovieList() {
             setIsDeleteModalOpen = { setIsDeleteModalOpen }
             selectedMovie = { selectedMovie }
             setSelectedMovie = { setSelectedMovie }      
+            getData = { getData }
           />
         )}
       </div>
