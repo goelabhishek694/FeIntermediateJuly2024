@@ -1,68 +1,148 @@
-import { Table } from 'antd'
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { Button, Table } from "antd";
+import { getAllMovies } from "../../calls/movies";
+import { useDispatch } from "react-redux";
+import { ShowLoading, HideLoading } from "../../redux/loaderSlice";
+import moment from "moment";
+import { EditOutlined,DeleteOutlined } from "@ant-design/icons";
+import MovieForm from "./MovieForm";
+import DeleteMovieModal from "./DeleteMovieModal"
 
 function MovieList() {
-    const movies = [
-        {
-          key: '1',
-          poster: 'Image1',
-          name: 'Mastaney',
-          description: 'Set in 1739, Nadar Shah`s undefeated army was attacked by Sikh Rebellions. ',
-          duration: 120,
-          genre: "Action",
-          language: "Hindi",
-          releaseDate: "Oct  25, 2023",
-        },
-        {
-          key: '2',
-          poster: 'Image2',
-          name: 'Mastaney',
-          description: 'Set in 1739, Nadar Shah`s undefeated army was attacked by Sikh Rebellions. ',
-          duration: 120,
-          genre: "Action",
-          language: "Hindi",
-          releaseDate: "Oct  25, 2023",
-          action: "Delete"
-        },
-      ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [formType, setFormType] = useState("add");
+  const [movies, setMovies] = useState([]);
+  //editing deletion
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const dispatch = useDispatch();
 
-      const tableHeadings = [
-        {
-            title:"Poster"
-        },
-        {
-            title:"Movie Name",
-            dataIndex: "name"
-        },
-        {
-            title:"Description",
-            dataIndex: "description"
-        },
-        {
-            title:"Duration",
-            dataIndex: "duration"
-        },
-        {
-            title:"Genre",
-            dataIndex: "genre"
-        },
-        {
-            title:"Language",
-            dataIndex: "language"
-        },
-        {
-            title:"Release Date",
-            dataIndex: "releaseDate"
-        },
-        {
-            title: "Action"
-        }
-      ]
+  //get all movies
+  useEffect(() => {
+    const getData = async () => {
+      dispatch(ShowLoading());
+      const resp = await getAllMovies();
+      const allMovies = resp.data;
+      setMovies(
+        allMovies.map((item) => {
+          return { ...item, key: `movie${item._id}` };
+        })
+      );
+      dispatch(HideLoading());
+    };
+    getData();
+  }, []);
+
+  const tableHeadings = [
+    {
+      title: "Poster",
+      dataIndex: "poster",
+      render: (text, data) => {
+        return (
+          <img
+            width="75"
+            height="115"
+            style={{ objectFit: "cover" }}
+            src={data.poster}
+            alt="movie poster"
+          />
+        );
+      },
+    },
+    {
+      title: "Movie Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+    },
+    {
+      title: "Duration",
+      dataIndex: "duration",
+      render: (text) => {
+        return `${text} Min`;
+      },
+    },
+    {
+      title: "Genre",
+      dataIndex: "genre",
+    },
+    {
+      title: "Language",
+      dataIndex: "language",
+    },
+    {
+      title: "Release Date",
+      dataIndex: "releaseDate",
+      render: (text, data) => {
+        //can be done using inbuilt lib ?
+        return moment(data.releaseData).format("MM-DD-YYYY");
+      },
+    },
+    {
+      title: "Action",
+      render: (text, data) => {
+        return (
+          <div>
+            <Button
+              onClick={() => {
+                setIsModalOpen(true);
+                setSelectedMovie(data);
+                setFormType("edit");
+              }}
+            >
+              <EditOutlined />
+            </Button>
+            <Button
+              onClick={() => {
+                setIsDeleteModalOpen(true);
+                setSelectedMovie(data);
+              }}
+            >
+              <DeleteOutlined />
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
   return (
-    <div>
+    <>
+      <div>
+        <Button
+          onClick={() => {
+            setIsModalOpen(true);
+            setFormType("add");
+          }}
+          Add
+          Movie
+        ></Button>
+      </div>
+      <div>
         <Table dataSource={movies} columns={tableHeadings}></Table>
-    </div>
-  )
+        {isModalOpen && (
+          <MovieForm
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            selectedMovie={selectedMovie}
+            formType={formType}
+            setSelectedMovie={setSelectedMovie}
+            //
+          />
+        )}
+
+        {isDeleteModalOpen && (
+          <DeleteMovieModal
+            isDeleteModalOpen = { isDeleteModalOpen }
+            setIsDeleteModalOpen = { setIsDeleteModalOpen }
+            selectedMovie = { selectedMovie }
+            setSelectedMovie = { setSelectedMovie }      
+          />
+        )}
+      </div>
+    </>
+  );
 }
 
-export default MovieList
+export default MovieList;
