@@ -20,27 +20,27 @@ const TheatreList = () => {
     const dispatch = useDispatch();
 
     const getData = async () => {
-        try{
-          dispatch(showLoading());
-          const response = await getAllTheatres({ owner: user._id });
-          if(response.success){
-            const allTheatres = response.data;
-            // console.log(allTheatres);
-            setTheatres(
-                allTheatres.map(function(item){
-                return {...item, key: `theatre${item._id}`}
-              })
-            );
-          }else{
-            message.error(response.message)
-          }
-          dispatch(hideLoading())
-  
-        }catch(err){
-          dispatch(hideLoading());
-          message.error(err.message);
+      try{
+        dispatch(showLoading());
+        const response = await getAllTheatres({ owner: user._id });
+        if(response.success){
+          const allTheatres = response.data;
+          // console.log(allTheatres);
+          setTheatres(
+              allTheatres.map(function(item){
+              return {...item, key: `theatre${item._id}`}
+            })
+          );
+        }else{
+          message.error(response.message)
         }
+        dispatch(hideLoading())
+
+      }catch(err){
+        dispatch(hideLoading());
+        message.error(err.message);
       }
+    }
 
     const columns = [
         {
