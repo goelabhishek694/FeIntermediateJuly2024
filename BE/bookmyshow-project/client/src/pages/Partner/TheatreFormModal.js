@@ -1,18 +1,43 @@
 import React from 'react'
-import { Col, Modal, Row, Form,  Input, Button, message} from 'antd';
+import { Col, Modal, Row, Form,  Input, Button, message, TextArea} from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
+import { ShowLoading, HideLoading } from '../../redux/loaderSlice';
+import { addTheatre, updateTheatre } from '../../calls/theatres';
 
 function TheatreFormModal({isModalOpen, selectedTheatre, setSelectedTheatre, setIsModalOpen, formType, getData}) {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.user);
-
 
     const handleCancel = () =>{
         setIsModalOpen(false);
         setSelectedTheatre(null);
     }
 
-    
+    const onFinish = async (values) => {
+        try{
+            dispatch(ShowLoading());
+            let response = null;
+            if(formType === "add"){
+                response = await addTheatre({...values, owner: user._id});
+            }else{
+                values.theatreId = selectedTheatre._id;
+                response = await updateTheatre(values);
+            }
+            console.log(response);
+            if (response.success) {
+                getData();
+                message.success(response.message);
+                setIsModalOpen(false);
+            } else {
+                message.error(response.message);
+            }
+            dispatch(HideLoading());
+        }catch(err){
+            dispatch(HideLoading());
+            message.error(err.message);
+        }
+    }
+
   return (
     <Modal centered title={formType === "add" ? "Add Theatre" : "Edit Theatre"} open={isModalOpen} onCancel={handleCancel} width={800} footer={null} >
     <Form layout='vertical' style={{width: "100%"}} initialValues={selectedTheatre} onFinish={onFinish}>

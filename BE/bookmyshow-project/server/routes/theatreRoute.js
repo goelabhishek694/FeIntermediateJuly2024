@@ -55,7 +55,8 @@ router.get("/by-owner/:ownerId", async (req, res) => {
 // Update theatre
 router.put('/',  async (req, res) => {
     try{
-        await Theatre.findByIdAndUpdate(req.body.theatreId, req.body);
+        const id = req.params?.theatreId;
+        await Theatre.findByIdAndUpdate(id, req.body);
         // console.log(req.body.theatreId)
         res.send({
             success: true,

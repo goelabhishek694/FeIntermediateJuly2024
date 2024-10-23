@@ -33,7 +33,8 @@ export const getAllTheatres = async (payload) => {
 // Update Theatre
 export const updateTheatre = async (payload) => {
     try{
-        const response = await axiosInstance.put('/api/theatre/', payload);
+        const {theatreId} = payload; 
+        const response = await axiosInstance.put(`/api/theatre/${theatreId}`, payload);
         return response.data;
     }catch(err){
         return err.resposne;

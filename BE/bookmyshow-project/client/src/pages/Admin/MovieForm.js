@@ -1,6 +1,6 @@
 import { Col, Modal, Row, Form, Input, Select, Button, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import { showLoading, hideLoading } from '../../redux/loaderSlice';
+import { ShowLoading, HideLoading } from '../../redux/loaderSlice';
 import { useDispatch } from 'react-redux';
 import { addMovie, updateMovie } from '../../calls/movies';
 import moment from 'moment';
@@ -14,7 +14,7 @@ const MovieForm = ({ isModalOpen, setIsModalOpen, selectedMovie, setSelectedMovi
 
   const onFinish = async (values) => {
     try {
-      dispatch(showLoading());
+      dispatch(ShowLoading());
       let response = null;
       if (formType === "add") {
         response = await addMovie(values);
@@ -29,9 +29,9 @@ const MovieForm = ({ isModalOpen, setIsModalOpen, selectedMovie, setSelectedMovi
         message.error(response.message);
       }
       setSelectedMovie(null);
-      dispatch(hideLoading());
+      dispatch(HideLoading());
     } catch (err) {
-      dispatch(hideLoading());
+      dispatch(HideLoading());
       message.error(err.message);
     }
   };
