@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Movie = require("../models/movideModel");
+const Movie = require("../models/movieModel");
 
 //add a movie
 router.post("/", async(req, res) => {

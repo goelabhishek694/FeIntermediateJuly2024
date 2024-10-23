@@ -4,11 +4,13 @@ const dbConfig =  require("./config/dbconfig");
 const app = express();
 const userRoute = require("./routes/userRoutes");
 const movieRoute = require("./routes/movieRoute");
+const theatreRoute = require("./routes/theatreRoute");
 
 app.use(express.json());
 
 app.use("/api/user", userRoute);
 app.use("/api/movie", movieRoute);
+app.use("/api/theatre", theatreRoute);
 
 app.listen(8082, () => {
     console.log("Server is running");

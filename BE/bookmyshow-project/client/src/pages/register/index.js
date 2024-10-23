@@ -1,27 +1,35 @@
-import React from "react";
-import { Button, Form, Input, message } from "antd";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Form, Input, Button, Radio, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../calls/users";
 
 function Register() {
-
   const onFinish = async (values) => {
-    try{
+    console.log(values);
+    try {
       const response = await RegisterUser(values);
-      if(response.success){
+      if (response.success) {
         message.success(response.message);
-      }else{
-        message.error(response.message)
+      } else {
+        message.error(response.message);
       }
-    }catch(err){
-      message.error(err.message);
+    } catch (error) {
+      message.error(error.message);
     }
-    
-  }
+  };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <>
       <header className="App-header">
-        <main className="main-area" mw-500 text-center px-3>
+        <main className="main-area mw-500 text-center px-3">
           <section className="left-section">
             <h1>Register to BookMyShow</h1>
           </section>
@@ -32,57 +40,75 @@ function Register() {
                 htmlFor="name"
                 name="name"
                 className="d-block"
-                rules={[{ required: true, message: "Name is required" }]}
+                rules={[{ required: true, message: "Name is required!" }]}
               >
                 <Input
                   id="name"
                   type="text"
                   placeholder="Enter your name"
+                  rules={[{ required: true, message: "Email is required!" }]}
                 ></Input>
               </Form.Item>
-
               <Form.Item
                 label="Email"
                 htmlFor="email"
                 name="email"
                 className="d-block"
-                rules={[{ required: true, message: "Email is required" }]}
+                rules={[{ required: true, message: "Email is required!" }]}
               >
                 <Input
                   id="email"
-                  type="text"
-                  placeholder="Enter your Email"
+                  type="email"
+                  placeholder="Enter your email"
                 ></Input>
               </Form.Item>
-
               <Form.Item
                 label="Password"
                 htmlFor="password"
                 name="password"
                 className="d-block"
-                rules={[{ required: true, message: "Password is required" }]}
+                rules={[{ required: true, message: "Password is required!" }]}
               >
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your Password"
+                  placeholder="Enter the password"
                 ></Input>
               </Form.Item>
 
-              <Form.Item className="d-block">
+              <Form.Item>
                 <Button
-                  type="primary"
                   block
+                  type="primary"
                   htmlType="submit"
-                  style={{ fontSize: "1rem", fontWeight: 600 }}
+                  style={{ fontSize: "1rem", fontWeight: "600" }}
                 >
-                  Register
+                  Sign Up
                 </Button>
+              </Form.Item>
+              <Form.Item
+                label="Register as a Partner"
+                htmlFor="role"
+                name="role"
+                className="d-block text-center"
+                initialValue={false}
+                rules={[{ required: true, message: "Please select an option!" }]}
+              >
+                <div className="d-flex justify-content-start">
+               
+                  <Radio.Group
+                    name="radiogroup"
+                    className="flex-start"
+                  >
+                    <Radio value={'partner'}>Yes</Radio>
+                    <Radio value={'user'}>No</Radio>
+                  </Radio.Group>
+                </div>
               </Form.Item>
             </Form>
             <div>
               <p>
-                Alread a user ? <Link to="/login">Login Now</Link>
+                Already a user? <Link to="/login">Login now</Link>
               </p>
             </div>
           </section>
