@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Modal, message } from 'antd';
-import { ShowLoading, HideLoading } from '../../redux/loaderSlice';
+import { showLoading, hideLoading } from '../../redux/loaderSlice';
 import { deleteTheatre } from '../../calls/theatres';
 function DeleteTheatreModal({isDeleteModalOpen, selectedTheatre, setIsDeleteModalOpen, setSelectedTheatre, getData}) {
 
@@ -9,7 +9,7 @@ function DeleteTheatreModal({isDeleteModalOpen, selectedTheatre, setIsDeleteModa
 
     const handleOk = async () => {
         try{
-            dispatch(ShowLoading());
+            dispatch(showLoading());
             const theatreId = selectedTheatre._id;
             const response = await deleteTheatre({ theatreId });
             console.log(theatreId, response);
@@ -21,9 +21,9 @@ function DeleteTheatreModal({isDeleteModalOpen, selectedTheatre, setIsDeleteModa
                 setSelectedTheatre(null);
             }
             setIsDeleteModalOpen(false);
-            dispatch(HideLoading());
+            dispatch(hideLoading());
         }catch(err){
-            dispatch(HideLoading());
+            dispatch(hideLoading());
             setIsDeleteModalOpen(false);
             message.error(err.message);
         }

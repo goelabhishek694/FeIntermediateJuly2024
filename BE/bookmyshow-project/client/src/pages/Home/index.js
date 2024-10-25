@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {HideLoading, ShowLoading} from "../../redux/loaderSlice";
+import {hideLoading, showLoading} from "../../redux/loaderSlice";
 import {useDispatch} from "react-redux";
 import { message, Row, Col, Input } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -15,17 +15,17 @@ const Home = () => {
 
     const getData = async () => {
         try{
-            dispatch(ShowLoading());
+            dispatch(showLoading());
             const response = await getAllMovies();
             if(response.success){
                 setMovies(response.data);
             }else{
                 message.error(response.message);
             }
-            dispatch(HideLoading());
+            dispatch(hideLoading());
         }catch(err){
             message.error(err.message);
-            dispatch(HideLoading());
+            dispatch(hideLoading());
         }
     }
 

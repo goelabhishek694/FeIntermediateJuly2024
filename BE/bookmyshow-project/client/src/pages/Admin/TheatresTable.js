@@ -2,14 +2,14 @@ import { Table, message, Button } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { getAllTheatresForAdmin } from '../../calls/theatres';
-import { ShowLoading, HideLoading } from '../../redux/loaderSlice';
+import { showLoading, hideLoading } from '../../redux/loaderSlice';
 function TheatresTable() {
   const [theatres,setTheatres] = useState([]);
   const dispatch = useDispatch();
 
   const getData = async () => {
     try{
-      dispatch(ShowLoading());
+      dispatch(showLoading());
       const response = await getAllTheatresForAdmin();
       if(response.success){
         const allTheatres = response.data;
@@ -22,10 +22,10 @@ function TheatresTable() {
       }else{
         message.error(response.message)
       }
-      dispatch(HideLoading())
+      dispatch(hideLoading())
 
     }catch(err){
-      dispatch(HideLoading());
+      dispatch(hideLoading());
       message.error(err.message);
     }
   }

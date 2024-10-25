@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Table } from "antd";
 import { getAllMovies } from "../../calls/movies";
 import { useDispatch } from "react-redux";
-import { ShowLoading, HideLoading } from "../../redux/loaderSlice";
+import { showLoading, hideLoading } from "../../redux/loaderSlice";
 import moment from "moment";
 import { EditOutlined,DeleteOutlined } from "@ant-design/icons";
 import MovieForm from "./MovieForm";
@@ -19,7 +19,7 @@ function MovieList() {
 
   //get all movies
   const getData = async () => {
-    dispatch(ShowLoading());
+    dispatch(showLoading());
     const resp = await getAllMovies();
     const allMovies = resp.data;
     setMovies(
@@ -27,7 +27,7 @@ function MovieList() {
         return { ...item, key: `movie${item._id}` };
       })
     );
-    dispatch(HideLoading());
+    dispatch(hideLoading());
   };
   useEffect(() => {
     getData();

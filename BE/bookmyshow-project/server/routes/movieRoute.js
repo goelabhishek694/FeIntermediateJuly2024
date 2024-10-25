@@ -34,7 +34,7 @@ router.get("/", async(req, res) => {
     }catch(err){
         res.send({
             success: false,
-            message: err.message;
+            message: err.message
         })
     }
 })

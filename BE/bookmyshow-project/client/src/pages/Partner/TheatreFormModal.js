@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Modal, Row, Form,  Input, Button, message, TextArea} from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
-import { ShowLoading, HideLoading } from '../../redux/loaderSlice';
+import { showLoading, hideLoading } from '../../redux/loaderSlice';
 import { addTheatre, updateTheatre } from '../../calls/theatres';
 
 function TheatreFormModal({isModalOpen, selectedTheatre, setSelectedTheatre, setIsModalOpen, formType, getData}) {
@@ -15,7 +15,7 @@ function TheatreFormModal({isModalOpen, selectedTheatre, setSelectedTheatre, set
 
     const onFinish = async (values) => {
         try{
-            dispatch(ShowLoading());
+            dispatch(showLoading());
             let response = null;
             if(formType === "add"){
                 response = await addTheatre({...values, owner: user._id});
@@ -31,9 +31,9 @@ function TheatreFormModal({isModalOpen, selectedTheatre, setSelectedTheatre, set
             } else {
                 message.error(response.message);
             }
-            dispatch(HideLoading());
+            dispatch(hideLoading());
         }catch(err){
-            dispatch(HideLoading());
+            dispatch(hideLoading());
             message.error(err.message);
         }
     }

@@ -3,7 +3,7 @@ import { GetCurrentUser } from '../calls/users'
 import {useNavigate} from "react-router-dom";
 import {message, Layout, Menu} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import { HideLoading, ShowLoading } from '../redux/loaderSlice';
+import { hideLoading, showLoading } from '../redux/loaderSlice';
 import { HomeOutlined, LogoutOutlined, ProfileOutlined, UserOutlined,  } from '@ant-design/icons'; 
 import {Link} from "react-router-dom";
 import { setUser } from '../redux/userSlice';
@@ -50,11 +50,11 @@ function ProtectedRoute({children}) {
 
   const getValidUser = async () => {
     try{
-      dispatch(ShowLoading());
+      dispatch(showLoading());
       const response = await GetCurrentUser();
       console.log(response);
       dispatch(setUser(response.data));
-      dispatch(HideLoading());
+      dispatch(hideLoading());
     }catch(err){
       dispatch(setUser(null));
       message.error(err.message);
