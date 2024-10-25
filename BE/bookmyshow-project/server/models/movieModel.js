@@ -31,6 +31,6 @@ const movieScehma = new mongoose.Schema({
     },
 })
 
-const Movies = mongoose.model("movies",movieScehma)l;
+const Movies = mongoose.model("movies",movieScehma);
 
 module.exports = Movies
