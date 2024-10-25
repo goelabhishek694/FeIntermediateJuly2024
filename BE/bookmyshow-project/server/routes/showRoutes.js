@@ -85,10 +85,13 @@ router.post("/theatres-by-movie", async(req, res) => {
         //filter out unique theatre
 
         let uniqueTheatres = [{}];
-        shows.forEach((shows) => {
-            let isTheatre = uniqueTheatres.find((theatre) => theatre._id === shows.theatre._id);
+        shows.forEach((show) => {
+            let isTheatre = uniqueTheatres.find((theatre) => theatre._id === show.theatre._id);
+            //if isTheatre is undeinfed, it has not been added to teh uniqueTheatres array
+            let showsOfThisTheatre;
             if(!isTheatre){
-                let showsOfThisTheatre = shows.filter((showObj) => showObj.theatre._id == show.theatre._id)
+                //grouping shows by theatre. 
+                showsOfThisTheatre = shows.filter((showObj) => showObj.theatre._id == show.theatre._id)
             }
             uniqueTheatres.push({
                 ...show.theatre._doc,

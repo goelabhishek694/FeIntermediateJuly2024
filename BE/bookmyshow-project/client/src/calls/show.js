@@ -1,8 +1,8 @@
 import { axiosInstance } from "./index";
 
-export const addTheatre = async (payload) => {
+export const addShow = async (payload) => {
     try{
-        const response = await axiosInstance.post('/api/theatre/', payload);
+        const response = await axiosInstance.post('/api/shows/', payload);
         return response.data;
     }catch(err){
         return err.response;
@@ -31,19 +31,21 @@ export const getAllTheatres = async (payload) => {
 }
 
 // Update Theatre
-export const updateTheatre = async (payload,id) => {
+export const updateShow = async (payload) => {
     try{
-        const response = await axiosInstance.put(`/api/theatre/${id}`, payload);
+        const {theatreId} = payload; 
+        const response = await axiosInstance.put(`/api/theatre/${theatreId}`, payload);
         return response.data;
     }catch(err){
         return err.resposne;
     }
 }
 
-// Delete Theatre
-export const deleteTheatre = async (payload) => {
+// Delete Show
+export const deleteShow = async (payload) => {
     try{
-        const response = await axiosInstance.delete('/api/theatre/', payload);
+        const {id} = payload;
+        const response = await axiosInstance.delete(`/api/theatre/${id}`, payload);
         return response.data;        
     }catch(err){
         return err.response;

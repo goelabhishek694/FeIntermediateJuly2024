@@ -20,8 +20,8 @@ function TheatreFormModal({isModalOpen, selectedTheatre, setSelectedTheatre, set
             if(formType === "add"){
                 response = await addTheatre({...values, owner: user._id});
             }else{
-                values.theatreId = selectedTheatre._id;
-                response = await updateTheatre(values);
+                let theatreId = selectedTheatre._id;
+                response = await updateTheatre(values, theatreId);
             }
             console.log(response);
             if (response.success) {
