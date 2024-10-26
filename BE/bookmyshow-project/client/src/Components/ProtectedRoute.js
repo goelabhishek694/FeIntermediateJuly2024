@@ -6,15 +6,15 @@ import {useDispatch, useSelector} from "react-redux";
 import { hideLoading, showLoading } from '../redux/loaderSlice';
 import { HomeOutlined, LogoutOutlined, ProfileOutlined, UserOutlined,  } from '@ant-design/icons'; 
 import {Link} from "react-router-dom";
-import { setUser } from '../redux/userSlice';
+// import { setUser } from '../redux/userSlice';
 import { Header } from 'antd/es/layout/layout';
-
+import userSlice from '../redux/userSlice';
+const actions = userSlice.actions;
 
 function ProtectedRoute({children}) {
   const {user} = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const navItems = [
     {
       label: "Home",
@@ -52,11 +52,11 @@ function ProtectedRoute({children}) {
     try{
       dispatch(showLoading());
       const response = await GetCurrentUser();
-      console.log(response);
-      dispatch(setUser(response.data));
+      console.log("bye",response.data);
+      dispatch(actions.setUser(response.data));
       dispatch(hideLoading());
     }catch(err){
-      dispatch(setUser(null));
+      dispatch(actions.setUser(null));
       message.error(err.message);
     }
   }
@@ -70,7 +70,7 @@ function ProtectedRoute({children}) {
   },[]);
   
   return (
-    user && (
+    // user && (
       <>
       <Layout>
         <Header className = "d-flex justify-content-between" style = {{
@@ -90,7 +90,7 @@ function ProtectedRoute({children}) {
       </Layout>
       </>
     )
-  )
+  // )
 }
 
 export default ProtectedRoute

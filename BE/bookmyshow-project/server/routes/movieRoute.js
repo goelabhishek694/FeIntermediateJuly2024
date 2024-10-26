@@ -39,12 +39,32 @@ router.get("/", async(req, res) => {
     }
 })
 
+//get movie by id
+router.get("/:id", async(req, res) => {
+    try{
+        const {id} = req.params;
+        const movie = await Movie.findById(id);
+        res.send({
+            success : true,
+            message: "movie has been fetched",
+            data: movie
+        });
+
+    }catch(err){
+        res.send({
+            success: false,
+            message: err.message
+        })
+    }
+})
+
+
 //update a movie
-router.put("/:id", async(req, res) => {
+router.put("/:movieId", async(req, res) => {
     try{
 
         const dataToBeUpdated = req.body;
-        const {movieId} = dataToBeUpdated;
+        const {movieId} = req.params;
         //returnDocument:true
         const movie = await Movie.findByIdAndUpdate(movieId, dataToBeUpdated, {new: true});
         res.send({
@@ -62,9 +82,11 @@ router.put("/:id", async(req, res) => {
 })
 
 //delete a movie
-router.delete("/", async(req, res) => {
+router.delete("/:movieId", async(req, res) => {
     try{
-        const { movieId } = req.body;
+        const { movieId } = req.params;
+        console.log("nemo", movieId);
+        
         await Movie.findByIdAndDelete(movieId);
         res.send({
             success: true,

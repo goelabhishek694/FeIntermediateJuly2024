@@ -9,9 +9,10 @@ export const addShow = async (payload) => {
     }
 }
 
-// Get all theatres for the Admin route
-export const getAllTheatresForAdmin = async () => {
+// get all the shows by theatre
+export const getShowsByTheatre = async () => {
     try{
+        //get id and add in route below as well 
         const response = await axiosInstance.get('/api/theatre/');
         return response.data;
     }catch(err){
@@ -19,11 +20,10 @@ export const getAllTheatresForAdmin = async () => {
     }
 }
 
-// Get theatres of a specific owner
-export const getAllTheatres = async (payload) => {
+// get all theatres by movie
+export const getAllTheatresByMovie = async (payload) => {
     try{
-        const {ownerId} = payload;
-        const response = await axiosInstance.get(`/api/theatre/by-owner/${ownerId}`);
+        const response = await axiosInstance.get(`/theatres-by-movie`, payload);
         return response.data;
     }catch(err){
         return err.response;

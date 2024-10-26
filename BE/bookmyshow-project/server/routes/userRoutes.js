@@ -64,7 +64,7 @@ router.post("/login", async (req,res) => {
 router.get("/current", authMiddleware, async(req,res) => {
     const user = await User.findById(req.body.userId).select("-password");
     // const user = await User.findById(req.body.userId).select("-password").select("-email");
-    console.log("in current route")
+    console.log("in current route", user);
     res.send({
         success: true,
         message: "you are authorized to go to protected route",

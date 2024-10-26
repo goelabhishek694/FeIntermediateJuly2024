@@ -19,7 +19,7 @@ const MovieForm = ({ isModalOpen, setIsModalOpen, selectedMovie, setSelectedMovi
       if (formType === "add") {
         response = await addMovie(values);
       } else {
-        response = await updateMovie({ ...values, movieId: selectedMovie._id });
+        response = await updateMovie(values, selectedMovie._id);
       }
       if (response.success) {
         getData();

@@ -10,7 +10,7 @@ export const addMovie = async (value) => {
     }
 }
 
-//register new movie
+//get all movies
 export const getAllMovies = async () => {
     try{
         const response = await axiosInstance.get("api/movie");
@@ -20,10 +20,21 @@ export const getAllMovies = async () => {
     }
 }
 
-//update a movie
-export const updateMovie = async (value) => {
+// get movie by id
+export const getMovieById = async (id) => {
     try{
-        const response = await axiosInstance.put("api/movie", value);
+        const response = await axiosInstance.get(`api/movie/${id}`);
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+//update a movie
+export const updateMovie = async (value,movieId) => {
+    try{
+        const response = await axiosInstance.put(`api/movie/${movieId}`, value);
         return response.data;
     }catch(err){
         console.log(err);
@@ -33,7 +44,8 @@ export const updateMovie = async (value) => {
 //delete a movie
 export const deleteMovie = async (value) => {
     try{
-        const response = await axiosInstance.delete("api/movie", value);
+        const {movieId} = value;
+        const response = await axiosInstance.delete(`api/movie/${movieId}`, value);
         return response.data;
     }catch(err){
         console.log(err);

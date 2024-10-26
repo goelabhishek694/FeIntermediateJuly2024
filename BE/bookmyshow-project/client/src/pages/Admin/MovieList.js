@@ -51,7 +51,7 @@ function MovieList() {
     },
     {
       title: "Movie Name",
-      dataIndex: "name",
+      dataIndex: "title",
     },
     {
       title: "Description",
@@ -117,7 +117,7 @@ function MovieList() {
           }}
           Add
           Movie
-        ></Button>
+        >Add Movie</Button>
       </div>
       <div>
         <Table dataSource={movies} columns={tableHeadings}></Table>

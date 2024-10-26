@@ -9,11 +9,11 @@ import { useSelector } from "react-redux";
 // import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 // import BookShow from "./pages/BookShow";
-// import SingleMovie from "./pages/SingleMovie";
+import SingleMovie from "./pages/SingleMovie";
 import Partner from "./pages/Partner";
 
 function App() {
-  const { loading } = useSelector((state) => state.loader);
+  const { loading } = useSelector((state) => state.loaders);
 
   return (
     <div className="App">
@@ -59,14 +59,14 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route
+          <Route
             path="/movie/:id"
             element={
               <ProtectedRoute>
                 <SingleMovie />
               </ProtectedRoute>
             }
-          /> */}
+          />
           {/* <Route
             path="/book-show/:id"
             element={

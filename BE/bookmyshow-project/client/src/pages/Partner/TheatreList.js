@@ -10,7 +10,7 @@ import ShowModal from './ShowModal';
 
 
 const TheatreList = () => {
-    const { user } = useSelector( (state) => state.user );
+    const { user } = useSelector( (state) => state.users );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isShowModalOpen, setIsShowModalOpen] = useState(false);
