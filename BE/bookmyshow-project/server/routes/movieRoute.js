@@ -42,8 +42,10 @@ router.get("/", async(req, res) => {
 //get movie by id
 router.get("/:id", async(req, res) => {
     try{
+        console.log("request made");
         const {id} = req.params;
         const movie = await Movie.findById(id);
+        console.log("movie", movie);
         res.send({
             success : true,
             message: "movie has been fetched",

@@ -10,7 +10,7 @@ import { setUser } from '../redux/userSlice';
 import { Header } from 'antd/es/layout/layout';
 
 function ProtectedRoute({children}) {
-  const user = useSelector((state) => state.user);
+  const {user} = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const navItems = [

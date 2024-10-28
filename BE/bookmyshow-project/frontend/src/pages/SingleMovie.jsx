@@ -39,11 +39,11 @@ function SingleMovie() {
     const getTheatres = async (payload) => {
         try{
             dispatch(showLoading);
-            const reposnse = await getAllTheatresByMovie({movie: params.id, date});
+            const response = await getAllTheatresByMovie({movie: params.id, date});
             if(response.success){
                 setTheatres(response.data);
             }else{
-                message.error(reposnse.message);
+                message.error(response.message);
             }
             dispatch(hideLoading());
         }catch(err){
@@ -56,9 +56,9 @@ function SingleMovie() {
         getData();
     },[])
 
-    useEffect(() => {
-        getTheatres();
-    },[date])
+    // useEffect(() => {
+    //     getTheatres();
+    // },[date])
 
 
 

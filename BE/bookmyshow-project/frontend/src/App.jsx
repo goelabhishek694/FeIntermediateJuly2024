@@ -8,7 +8,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import { useSelector } from "react-redux";
 // import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
-// import BookShow from "./pages/BookShow";
+import BookShow from "./pages/BookShow";
 import SingleMovie from "./pages/SingleMovie";
 import Partner from "./pages/Partner";
 
@@ -67,14 +67,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/book-show/:id"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <BookShow />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
-          /> */}
+          />
         </Routes>
       </BrowserRouter>
     </div>

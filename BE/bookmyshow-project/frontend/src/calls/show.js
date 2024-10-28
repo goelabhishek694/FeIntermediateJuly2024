@@ -30,6 +30,17 @@ export const getAllTheatresByMovie = async (payload) => {
     }
 }
 
+//get show by id
+export const getShowById = async (id) => {
+    try{
+        const response = await axiosInstance.get(`/${id}`);
+        return response.data;
+    }catch(err){
+        return err.response;
+    }
+}
+
+
 // Update Theatre
 export const updateShow = async (payload) => {
     try{
