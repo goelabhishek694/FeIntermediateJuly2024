@@ -21,7 +21,7 @@ async function emailHelper(templateName, receiverEmail, creds){
             port: 587,
             auth: {
                 user: "apikey",
-                pass: "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"
+                pass: SENDGRID_API_KEY
             }
         }
 
