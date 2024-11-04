@@ -16,6 +16,7 @@ app.use("/api/theatre", theatreRoute);
 app.use("/api/shows", showRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+
 app.listen(8082, () => {
     console.log("Server is running");
 });

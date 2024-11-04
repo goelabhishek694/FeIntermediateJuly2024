@@ -44,7 +44,31 @@ router.post("/book-show", authMiddleware, async (req, res) => {
 
         const show = await Shows.findById(req.body.show).populate("movie");
         const updatedBookSeats = [...show.bookedSeats, ...req.body.seats];
-        await Shows.findById(req.body.show, {bookedSeats: updatedBookSeats});
+        await Shows.findByIdAndUpdate(req.body.show, {bookedSeats: updatedBookSeats});
+
+        const populatedBooking = await Booking.findById(newBooking._id).populate("user").populate("show").populate({
+            path: "show",
+            populate:{
+                path: "movie",
+                model: "movies"
+            }
+        }).populate({
+            path: "show",
+            populate: {
+                path: "theatre",
+                model: "theatres"
+            }
+        });
+        await emailHelper("booking.html", populatedBooking.user.email, {
+            name:populatedBooking.user.name,
+            movie: populatedBooking.show.movie.title,
+            theatre: populatedBooking.show.theatre.name,
+            date: populatedBooking.show.date,
+            time: populatedBooking.show.time,
+            seats: populatedBooking.seats,
+            amount: populatedBooking.seats.length * populatedBooking.show.ticketPrice,
+            transactionId: populatedBooking.transactionId,
+        })
         res.send({
             success: true,
             message: 'New Booking done!',

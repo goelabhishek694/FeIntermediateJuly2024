@@ -2,7 +2,7 @@ const router = require("express").Router();
 const authMiddleware = require("../middlewares/authMiddleware");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-
+const {emailHelper} = require("../utils/emailHelper");
 router.post("/register", async (req,res) => {
     try{
         const userExists = await User.findOne({email: req.body.email});
@@ -72,4 +72,91 @@ router.get("/current", authMiddleware, async(req,res) => {
     })
 })
 
+//node library otp 
+const otpGenerator = function (){
+    return Math.floor(Math.random()*10000 +90000) ;
+}
+
+router.patch("/forgetpassword", async function(req, res) {
+    try{
+        // 1. ask for email 
+        // 2. check if email is present 
+        //     if email is not pesent -> send a response to the user user not found 
+        // 3. if email is present -> create a basic otp -> sedn to email
+        // 4. store that otp in user db 
+
+        const {email} = req.body;
+        if(!email){
+            return res.status(401).json({
+                status: "failure",
+                message: "Please enter the email for forgot password"
+            })
+        }
+        let user = await User.findOne({email});
+        if(!user){
+            return res.status(404).json({
+                status: "failure",
+                message: "user not found"
+            })
+        }
+        const otp = otpGenerator();
+        user.otp = otp;
+        user.otpExpiry = Date.now() + 10*60*1000;
+        await user.save();
+        await emailHelper("otp.html", user.email, {name: user.name, otp})
+        res.status(200).json({
+            status: "success",
+            message: "otp sent to your email"
+        })
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({"message":"An error has occured, pls try gain later"})
+    }
+})
+
+router.patch("/resetpassword", async function (req, res) {
+    try{
+        let {password, otp, email} = req.body;
+        if(!password || !otp || !email){
+            return res.status(401).json({
+                status: "failure",
+                message: "invalid request"
+            })
+        }
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(400).json({
+                status: "failure",
+                message: "user not found"
+            })
+        }
+        //if otp is expired
+        if(Date.now() > user.otpExpiry){
+            return res.status(400).json({
+                status: "failure",
+                message: "user not found"
+            })
+        }
+        if(user.otp != otp){
+            return res.status(400).json({
+                status: "failure",
+                message: "invalid otp"
+            })
+        }
+        user.password = password;
+        user.otp = undefined;
+        user.otpExpiry = undefined;
+         await user.save();
+         return res.status(200).json({
+            status: "success",
+            message: "password reset successfull"
+         });
+    }catch(err){
+        res.status(500).json({
+            message: err.message,
+            status: "failure"
+          })
+    }
+})
 module.exports = router;
