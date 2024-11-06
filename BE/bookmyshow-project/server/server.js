@@ -13,10 +13,11 @@ const movieRoute = require("./routes/movieRoute");
 const theatreRoute = require("./routes/theatreRoute");
 const showRoutes = require("./routes/showRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+const { log } = require("console");
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, "..", "frontend",'dist')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
 });
 
 //rate limiter middleware
@@ -58,3 +59,5 @@ app.listen(8082, () => {
     console.log("Server is running");
 });
 
+
+console.log(path.join(__dirname, "..", "frontend",'dist'));
