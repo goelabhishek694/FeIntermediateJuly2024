@@ -3,6 +3,8 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const {emailHelper} = require("../utils/emailHelper");
+const bcrypt = require("bcrypt");
+
 router.post("/register", async (req,res) => {
     try{
         const userExists = await User.findOne({email: req.body.email});
@@ -14,8 +16,9 @@ router.post("/register", async (req,res) => {
                 message:"User already exists"
             })
         }
-
-        const newUser = new User(req.body);
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+        const newUser = new User({...req.body, password:hashedPassword});
         await newUser.save();
         //send a verify email id link 
         //redirect to login page , automoatically login and redirect to home page 
@@ -38,8 +41,8 @@ router.post("/login", async (req,res) => {
                 message:"User does not exists. Please register"
             })
         }
-        
-        if(req.body.password != user.password ){
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        if( !isMatch ){
             return res.status(401).json({
                 success: false,
                 message:"Invalid credentials"

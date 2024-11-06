@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Form, Input, Button, Radio, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../calls/users";
+const 
 
 function Register() {
   const onFinish = async (values) => {
@@ -46,7 +47,6 @@ function Register() {
                   id="name"
                   type="text"
                   placeholder="Enter your name"
-                  rules={[{ required: true, message: "Email is required!" }]}
                 ></Input>
               </Form.Item>
               <Form.Item
