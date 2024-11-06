@@ -3,6 +3,8 @@ const rateLimit = require('express-rate-limit');
 const helmet = require("helmet");
 //package works by checking for key in objects that beign with $ or contains . = . these characters are used in mongodb queries , it canbe exploited for injection attacks. strips these characters from the input , effectively sanitizing the input 
 const mongoSanitize = require("express-mongo-sanitize");
+const path = require("path");
+
 require("dotenv").config();
 const dbConfig =  require("./config/dbconfig");
 const app = express();
@@ -11,6 +13,11 @@ const movieRoute = require("./routes/movieRoute");
 const theatreRoute = require("./routes/theatreRoute");
 const showRoutes = require("./routes/showRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 //rate limiter middleware
 const apiLimiter = rateLimit({

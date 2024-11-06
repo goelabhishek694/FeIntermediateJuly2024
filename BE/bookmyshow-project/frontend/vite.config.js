@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8082', // Your backend server URL
+        target: 'https://feintermediatejuly2024.onrender.com', // Your backend server URL
         changeOrigin: true,
         secure: false,
       },
