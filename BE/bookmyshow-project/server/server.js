@@ -4,17 +4,17 @@ const helmet = require("helmet");
 //package works by checking for key in objects that beign with $ or contains . = . these characters are used in mongodb queries , it canbe exploited for injection attacks. strips these characters from the input , effectively sanitizing the input 
 const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
-
+const cors = require("cors");
 require("dotenv").config();
-const dbConfig =  require("./config/dbconfig");
+// const dbConfig =  require("./config/dbconfig");
 const app = express();
 const userRoute = require("./routes/userRoutes");
 const movieRoute = require("./routes/movieRoute");
 const theatreRoute = require("./routes/theatreRoute");
 const showRoutes = require("./routes/showRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
-const { log } = require("console");
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, "..", "frontend",'dist')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
