@@ -6,7 +6,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
-// const dbConfig =  require("./config/dbconfig");
+const dbConfig =  require("./config/dbconfig");
 const app = express();
 const userRoute = require("./routes/userRoutes");
 const movieRoute = require("./routes/movieRoute");
